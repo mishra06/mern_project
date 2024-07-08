@@ -1,5 +1,4 @@
-// const express = require('express')// method-1
-import express from "express"; // method-2
+import express from "express";
 import dotenv from "dotenv"; 
 import connectDB from "./config/database.js";
 import userRoute from "./routes/userRoute.js";
@@ -22,7 +21,11 @@ const corsOption={
 };
 app.use(cors(corsOption)); 
 
-
+app.get("/",(req,res)=>{
+    res.json({
+      msg:"hello world"
+    })
+})
 // routes
 app.use("/api/v1/user",userRoute); 
 app.use("/api/v1/message",messageRoute);
