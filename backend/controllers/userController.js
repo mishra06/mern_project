@@ -58,14 +58,14 @@ export const login = async (req, res) => {
             })
         };
         const tokenData = {
-            userId: user._id
+            userId: user._id,
         };
 
         const token =  jwt.sign(tokenData, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
 
-        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'strict' }).json({
+        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, sameSite: 'none', secure:true , path:"/" }).json({
             _id: user._id,
-            username: user.username,
+            username: user.username,   
             fullName: user.fullName,
             profilePhoto: user.profilePhoto
         });
