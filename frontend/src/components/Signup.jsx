@@ -4,6 +4,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 // import { BASE_URL } from '..';
 import { URL } from '../utils/Constant';
+import tunes from "../assets/sounds/2.wav";
+const sounds = new Audio(tunes); 
 
 
 const Signup = () => {
@@ -28,6 +30,7 @@ const Signup = () => {
         withCredentials: true
       });
       if (res.data.success) {
+        sounds.play();
         navigate("/login");
         toast.success(res.data.message);
       }

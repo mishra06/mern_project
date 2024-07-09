@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import {useSelector} from "react-redux";
+import { extractTime } from "../utils/extractTime";
 
 const Message = ({message}) => {
     const scroll = useRef();
     const {authUser,selectedUser} = useSelector(store=>store.user);
+
+    const time = extractTime(message?.createdAt);
 
     useEffect(()=>{
         scroll.current?.scrollIntoView({behavior:"smooth"});
@@ -17,7 +20,7 @@ const Message = ({message}) => {
                 </div>
             </div>
             <div className="chat-header">
-                <time className="text-xs opacity-50 text-white">12:45</time>
+                <time className="text-xs opacity-50 text-white">{time}</time>
             </div>
             <div className={`chat-bubble ${message?.senderId !== authUser?._id ? 'bg-gray-200 text-black' : ''} `}>{message?.message}</div>
         </div>
