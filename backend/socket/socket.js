@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors:{
-        origin:['http://localhost:3000','https://mern-project-psi-jet.vercel.app/'],
+        origin:['http://localhost:3000','https://mern-project-psi-jet.vercel.app'],
         methods:['GET', 'POST'],
     },
 });
